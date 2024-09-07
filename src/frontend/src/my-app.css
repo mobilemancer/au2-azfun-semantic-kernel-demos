@@ -1,0 +1,79 @@
+body{
+  font-family: Lato, sans-serif;
+  font-size: 20px;
+  margin: 0px;
+}
+
+input,
+textarea {
+  width: 100%;
+  font-size: 1.2rem;
+  margin: 10px 0px;
+  padding: 5px;
+}
+
+button{
+  font-size: large;
+}
+
+/* menu */
+nav {
+  background: #eee;
+  display: flex;
+}
+
+a {
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  background-color: darkgray;
+}
+
+.active {
+  background-color: lightgray;
+}
+/* menu end */
+
+/* pages */
+h1 {
+  text-align: center;
+  color: indigo;
+}
+
+.page-content{
+  margin: 0px 20px;
+  width: -webkit-fill-available;
+}
+
+/* page */
+
+
+
+.button-row {
+  display: flex;
+  justify-content: right;
+}
+
+/* spinner */
+.spinner {
+  width: 100%;
+  height: 3px;
+  margin: 1px 0px;
+  background: linear-gradient(to right, #cccccc00 20%, #c818e3 50%, #cccccc00 80%);
+  background-size: 200% 100%;
+  animation: swish 2s linear infinite;
+}
+
+@keyframes swish {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* spinner end */

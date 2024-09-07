@@ -1,0 +1,14 @@
+<div class="spinner" if.bind="loading"></div>
+<h1>Semantic Kernel - Demo</h1>
+
+<div class="page-content">
+    <h2>Enter Rough Job Draft</h2>
+    <textarea id="jobAdText" rows="8" cols="150" value.bind="draft"></textarea>
+
+    <div class="button-row">
+        <button id="submit" click.trigger="sendText" disabled.bind="loading">Submit</button>
+    </div>
+
+    <h2>Result</h2>
+    <textarea id="result" rows="15" cols="150" value.bind="response"></textarea>
+</div>

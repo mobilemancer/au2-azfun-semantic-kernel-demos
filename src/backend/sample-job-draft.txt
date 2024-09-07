@@ -1,0 +1,5 @@
+C# backed developer wanted by corporation Manta-ray, 
+We specialize in construction planning software and have a suite of SaaS products for that. 
+Need 5 years backend experience, also distributed systems and azure. 
+We use react native for mobile apps, would like 3 year experience. 
+Contact: career@manta-ray.com, remote
