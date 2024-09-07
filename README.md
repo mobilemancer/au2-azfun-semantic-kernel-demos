@@ -1,4 +1,4 @@
-# au2-semantic-kernel-html-demo
+# Semantic Kernel Demo app, fueled by Aurelia 2 and Azure Functions
 
 Demo code for the "Leveraging .NET Expertise for AI with Semantic Kernel" talk
 
