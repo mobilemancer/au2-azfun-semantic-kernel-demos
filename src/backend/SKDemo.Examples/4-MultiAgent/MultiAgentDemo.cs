@@ -60,10 +60,10 @@ namespace SKDemo.Examples._4_MultiAgent
             Debug.Assert(!string.IsNullOrEmpty(openAIKey), "OpenAIKey environment variable is not set.");
 
             builder.AddOpenAIChatCompletion(
-                     //"gpt-3.5-turbo",            // OpenAI Model name
+                     "gpt-3.5-turbo",            // OpenAI Model name
                      //"gpt-4",                    // OpenAI Model name
                      //"gpt-4-turbo",              // OpenAI Model name
-                     "gpt-4o-mini",              // OpenAI Model name
+                     //"gpt-4o-mini",              // OpenAI Model name
                      openAIKey);                 // OpenAI API Key
 
             var kernel = builder.Build();
