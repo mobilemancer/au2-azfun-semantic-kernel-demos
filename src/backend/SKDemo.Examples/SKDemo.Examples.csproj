@@ -7,9 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="5-KernelMemory\Manta Ray corp.docx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="5-KernelMemory\Manta Ray corp.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MarkdownSharp" Version="2.0.5" />
-    <PackageReference Include="Microsoft.SemanticKernel" Version="1.16.2" />
-    <PackageReference Include="Microsoft.SemanticKernel.Abstractions" Version="1.16.2" />
+    <PackageReference Include="Microsoft.KernelMemory.AI.OpenAI" Version="0.75.240924.1" />
+    <PackageReference Include="Microsoft.KernelMemory.Core" Version="0.75.240924.1" />
+    <PackageReference Include="Microsoft.SemanticKernel" Version="1.21.1" />
+    <PackageReference Include="Microsoft.SemanticKernel.Abstractions" Version="1.21.1" />
     <PackageReference Include="Microsoft.SemanticKernel.Agents.Abstractions" Version="1.16.2-alpha" />
     <PackageReference Include="Microsoft.SemanticKernel.Agents.Core" Version="1.16.2-alpha" />
     <PackageReference Include="Microsoft.SemanticKernel.Agents.OpenAI" Version="1.16.2-alpha" />
