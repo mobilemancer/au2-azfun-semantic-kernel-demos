@@ -61,33 +61,20 @@ namespace SKDemo.Examples._4_MultiAgent
 
             builder.AddOpenAIChatCompletion(
                      "gpt-3.5-turbo",            // OpenAI Model name
-                     //"gpt-4",                    // OpenAI Model name
-                     //"gpt-4-turbo",              // OpenAI Model name
-                     //"gpt-4o-mini",              // OpenAI Model name
+                     //"gpt-4",
+                     //"gpt-4-turbo",
+                     //"gpt-4o-mini",
                      openAIKey);                 // OpenAI API Key
 
             var kernel = builder.Build();
 
             _openAIPromptExecutionSettings = new()
             {
-                ToolCallBehavior = ToolCallBehavior.EnableKernelFunctions
+                ToolCallBehavior = ToolCallBehavior.EnableKernelFunctions,
+                Temperature = 1.0
             };
 
-            var moderator = new ChatCompletionAgent()
-            {
-                Instructions = """
-You are the debate moderator.
-You can decide if the chat is over or if more discussion is needed.
-You should encourage the other agents to motivate their answers for at least one round.
-You will decide a winner from the other agents answers when the chat is over, based on the arguments presented.
-When you decide it's over, just answer "I proclaim the winner is {name of the agent} with {the agents sugestion} - the debate is now finished."
-NEVER PRODUCE INVALID CONTENT!
-""",
-                Name = "The_Moderator",
-                Kernel = kernel,
-                ExecutionSettings = _openAIPromptExecutionSettings,
-            };
-
+            var moderator = Moderator(kernel);
             var lemmy = Lemmy(kernel);
             var lars = Lars(kernel);
             var kurt = Kurt(kernel);
@@ -114,6 +101,23 @@ NEVER PRODUCE INVALID CONTENT!
             return chat;
         }
 
+        public static ChatCompletionAgent Moderator(Kernel kernel)
+        {
+            return new ChatCompletionAgent()
+            {
+                Instructions = """
+You are the debate moderator.
+You can decide if the chat is over or if more discussion is needed.
+You should encourage the other agents to motivate their answers for at least one round.
+You will decide a winner from the other agents answers when the chat is over, based on the arguments presented.
+When you decide it's over, just answer "I proclaim the winner is {name of the agent} with {the agents sugestion} - the debate is now finished."
+NEVER PRODUCE INVALID CONTENT!
+""",
+                Name = "The_Moderator",
+                Kernel = kernel,
+                ExecutionSettings = _openAIPromptExecutionSettings,
+            };
+        }
 
         public static ChatCompletionAgent Lemmy(Kernel kernel)
         {

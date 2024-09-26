@@ -24,11 +24,11 @@ namespace SKDemo.Examples._3_ChatBot
                 Debug.Assert(!string.IsNullOrEmpty(openAIKey), "OpenAIKey environment variable is not set.");
 
                 builder.AddOpenAIChatCompletion(
-                         "gpt-4o-mini",             // OpenAI Model name
+                         "gpt-4o",             // OpenAI Model name
                          openAIKey);                // OpenAI API Key
 
-                builder.Plugins.AddFromType<JobAddCopywriterPlugin>();
-                builder.Plugins.AddFromType<MarkdownToHTMLPlugin>();
+                //builder.Plugins.AddFromType<JobAddCopywriterPlugin>();
+                //builder.Plugins.AddFromType<MarkdownToHTMLPlugin>();
 
                 _kernel = builder.Build();
 
