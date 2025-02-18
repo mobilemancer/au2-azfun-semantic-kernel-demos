@@ -1,8 +1,4 @@
-﻿using MarkdownSharp;
-using Microsoft.SemanticKernel;
-using System.ComponentModel;
-
-namespace SKDemo.Examples._2_RefineDraft
+﻿namespace SKDemo.Examples._2_RefineDraft
 {
     public class MarkdownToHTMLPlugin
     {

@@ -1,6 +1,4 @@
-﻿using Microsoft.SemanticKernel;
-
-namespace SKDemo.Examples._2_UsingPlugins
+﻿namespace SKDemo.Examples._2_UsingPlugins
 {
     public class DatePlugin
     {

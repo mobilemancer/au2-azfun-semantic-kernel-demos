@@ -1,10 +1,4 @@
-﻿using Microsoft.SemanticKernel;
-using Microsoft.SemanticKernel.ChatCompletion;
-using Microsoft.SemanticKernel.Connectors.OpenAI;
-using SKDemo.Examples._2_RefineDraft;
-using System.Diagnostics;
-
-namespace SKDemo.Examples._3_ChatBot
+﻿namespace SKDemo.Examples._3_ChatBot
 {
     public class ChatBot
     {
@@ -21,14 +15,18 @@ namespace SKDemo.Examples._3_ChatBot
 
                 // using OpenAI
                 var openAIKey = Environment.GetEnvironmentVariable("OpenAIKey");
-                Debug.Assert(!string.IsNullOrEmpty(openAIKey), "OpenAIKey environment variable is not set.");
+                Debug.Assert(
+                    !string.IsNullOrEmpty(openAIKey),
+                    "OpenAIKey environment variable is not set."
+                );
 
                 builder.AddOpenAIChatCompletion(
-                         "gpt-4o",             // OpenAI Model name
-                         openAIKey);                // OpenAI API Key
+                    "gpt-4o", // OpenAI Model name
+                    openAIKey
+                ); // OpenAI API Key
 
-                //builder.Plugins.AddFromType<JobAddCopywriterPlugin>();
-                //builder.Plugins.AddFromType<MarkdownToHTMLPlugin>();
+                builder.Plugins.AddFromType<JobAddCopywriterPlugin>();
+                builder.Plugins.AddFromType<MarkdownToHTMLPlugin>();
 
                 _kernel = builder.Build();
 
@@ -41,9 +39,8 @@ namespace SKDemo.Examples._3_ChatBot
                 // Enable auto function calling
                 _openAIPromptExecutionSettings = new()
                 {
-                    ToolCallBehavior = ToolCallBehavior.AutoInvokeKernelFunctions
+                    ToolCallBehavior = ToolCallBehavior.AutoInvokeKernelFunctions,
                 };
-
             }
         }
 
@@ -56,7 +53,8 @@ namespace SKDemo.Examples._3_ChatBot
             var result = await _chatCompletionService.GetChatMessageContentAsync(
                 _history,
                 executionSettings: _openAIPromptExecutionSettings,
-                kernel: _kernel);
+                kernel: _kernel
+            );
 
             // Add the message from the agent to the chat history
             _history.AddMessage(result.Role, result.Content ?? string.Empty);

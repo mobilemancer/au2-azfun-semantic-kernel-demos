@@ -1,8 +1,4 @@
-﻿using Microsoft.KernelMemory;
-using System.Diagnostics;
-using System.Text;
-
-namespace SKDemo.Examples._5_KernelMemory
+﻿namespace SKDemo.Examples._5_KernelMemory
 {
     public class KernelMem
     {
@@ -11,14 +7,22 @@ namespace SKDemo.Examples._5_KernelMemory
         public KernelMem()
         {
             var openAIKey = Environment.GetEnvironmentVariable("OpenAIKey");
-            Debug.Assert(!string.IsNullOrEmpty(openAIKey), "OpenAIKey environment variable is not set.");
+            Debug.Assert(
+                !string.IsNullOrEmpty(openAIKey),
+                "OpenAIKey environment variable is not set."
+            );
 
             memory = new KernelMemoryBuilder()
                 .WithOpenAIDefaults(openAIKey)
                 .Build<MemoryServerless>();
 
             // Import a file
-            memory.ImportDocumentAsync("5-KernelMemory/Manta Ray corp.docx", tags: new() { { "user", "Andreas" } }).Wait();
+            memory
+                .ImportDocumentAsync(
+                    "5-KernelMemory/Manta Ray corp.docx",
+                    tags: new() { { "user", "Andreas" } }
+                )
+                .Wait();
         }
 
         public async ValueTask<string> Run(string question)

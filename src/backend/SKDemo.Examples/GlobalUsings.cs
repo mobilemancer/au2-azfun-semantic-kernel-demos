@@ -1,0 +1,12 @@
+global using System.ComponentModel;
+global using System.Diagnostics;
+global using System.Text;
+global using MarkdownSharp;
+global using Microsoft.Extensions.Logging;
+global using Microsoft.KernelMemory;
+global using Microsoft.SemanticKernel;
+global using Microsoft.SemanticKernel.Agents;
+global using Microsoft.SemanticKernel.Agents.Chat;
+global using Microsoft.SemanticKernel.ChatCompletion;
+global using Microsoft.SemanticKernel.Connectors.OpenAI;
+global using SKDemo.Examples._2_RefineDraft;

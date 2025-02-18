@@ -1,8 +1,4 @@
-﻿using System.Diagnostics;
-using Microsoft.SemanticKernel;
-using Microsoft.SemanticKernel.Connectors.OpenAI;
-
-namespace SKDemo.Examples
+﻿namespace SKDemo.Examples
 {
     public class SimplePrompt
     {

@@ -1,13 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using Microsoft.SemanticKernel;
-using Microsoft.SemanticKernel.Agents;
-using Microsoft.SemanticKernel.Agents.Chat;
-using Microsoft.SemanticKernel.ChatCompletion;
-using Microsoft.SemanticKernel.Connectors.OpenAI;
-using System.Diagnostics;
-using System.Text;
-
-namespace SKDemo.Examples._4_MultiAgent
+﻿namespace SKDemo.Examples._4_MultiAgent
 {
 #pragma warning disable SKEXP0110 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
 #pragma warning disable SKEXP0001 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
@@ -36,8 +27,12 @@ namespace SKDemo.Examples._4_MultiAgent
 
                 await foreach (var content in chat.InvokeAsync())
                 {
-                    _logger.LogInformation($"{content.AuthorName ?? "Author unknown"} > {content.Content}");
-                    result.AppendLine($"{content.AuthorName ?? "Author unknown"} > {content.Content}");
+                    _logger.LogInformation(
+                        $"{content.AuthorName ?? "Author unknown"} > {content.Content}"
+                    );
+                    result.AppendLine(
+                        $"{content.AuthorName ?? "Author unknown"} > {content.Content}"
+                    );
                     result.AppendLine();
                 }
             }
@@ -47,9 +42,7 @@ namespace SKDemo.Examples._4_MultiAgent
                 _logger.LogError($"An error occurred: {ex.Message}");
             }
             return result.ToString();
-
         }
-
 
         public AgentGroupChat SetupMultiAgentChat()
         {
@@ -57,21 +50,25 @@ namespace SKDemo.Examples._4_MultiAgent
 
             // using OpenAI
             var openAIKey = Environment.GetEnvironmentVariable("OpenAIKey");
-            Debug.Assert(!string.IsNullOrEmpty(openAIKey), "OpenAIKey environment variable is not set.");
+            Debug.Assert(
+                !string.IsNullOrEmpty(openAIKey),
+                "OpenAIKey environment variable is not set."
+            );
 
             builder.AddOpenAIChatCompletion(
-                     "gpt-3.5-turbo",            // OpenAI Model name
-                     //"gpt-4",
-                     //"gpt-4-turbo",
-                     //"gpt-4o-mini",
-                     openAIKey);                 // OpenAI API Key
+                "gpt-3.5-turbo", // OpenAI Model name
+                //"gpt-4",
+                //"gpt-4-turbo",
+                //"gpt-4o-mini",
+                openAIKey
+            ); // OpenAI API Key
 
             var kernel = builder.Build();
 
             _openAIPromptExecutionSettings = new()
             {
                 ToolCallBehavior = ToolCallBehavior.EnableKernelFunctions,
-                Temperature = 1.0
+                Temperature = 1.0,
             };
 
             var moderator = Moderator(kernel);
@@ -81,21 +78,19 @@ namespace SKDemo.Examples._4_MultiAgent
 
             AgentGroupChat chat = new(lemmy, lars, kurt, moderator)
             {
-                ExecutionSettings =
-                new()
+                ExecutionSettings = new()
                 {
                     // Here a TerminationStrategy subclass is used that will terminate when
                     // an assistant message contains the term "approve".
-                    TerminationStrategy =
-                        new ApprovalTerminationStrategy()
-                        {
-                            // The agent who get's to say when we are done
-                            Agents = [moderator],
-                            // Limit total number of turns (tweak this if the model starts producing 500's)
-                            MaximumIterations = 16,
-                            AutomaticReset = true
-                        }
-                }
+                    TerminationStrategy = new ApprovalTerminationStrategy()
+                    {
+                        // The agent who get's to say when we are done
+                        Agents = [moderator],
+                        // Limit total number of turns (tweak this if the model starts producing 500's)
+                        MaximumIterations = 16,
+                        AutomaticReset = true,
+                    },
+                },
             };
 
             return chat;
@@ -132,7 +127,7 @@ NEVER PRODUCE INVALID CONTENT!
             {
                 Instructions = instructions,
                 Name = "Lemmy_Kilmister",
-                Kernel = kernel
+                Kernel = kernel,
             };
 
             return lemmy;
@@ -151,7 +146,7 @@ NEVER PRODUCE INVALID CONTENT!
             {
                 Instructions = instructions,
                 Name = "Lars_Ulrich",
-                Kernel = kernel
+                Kernel = kernel,
             };
 
             return lars;
@@ -171,7 +166,7 @@ NEVER PRODUCE INVALID CONTENT!
             {
                 Instructions = instructions,
                 Name = "Kurt_Cobain",
-                Kernel = kernel
+                Kernel = kernel,
             };
 
             return kurt;
@@ -180,8 +175,18 @@ NEVER PRODUCE INVALID CONTENT!
         private sealed class ApprovalTerminationStrategy : TerminationStrategy
         {
             // Terminate when the final message is "finished"
-            protected override Task<bool> ShouldAgentTerminateAsync(Agent agent, IReadOnlyList<ChatMessageContent> history, CancellationToken cancellationToken)
-                => Task.FromResult(history[history.Count - 1].Content?.Contains("the debate is now finished", StringComparison.OrdinalIgnoreCase) ?? false);
+            protected override Task<bool> ShouldAgentTerminateAsync(
+                Agent agent,
+                IReadOnlyList<ChatMessageContent> history,
+                CancellationToken cancellationToken
+            ) =>
+                Task.FromResult(
+                    history[history.Count - 1]
+                        .Content?.Contains(
+                            "the debate is now finished",
+                            StringComparison.OrdinalIgnoreCase
+                        ) ?? false
+                );
         }
     }
 
