@@ -1,13 +1,10 @@
-﻿namespace SKDemo.Examples._2_UsingPlugins
+﻿public class DatePlugin
 {
-    public class DatePlugin
+    [KernelFunction]
+    public string GetTodaysDate()
     {
-        [KernelFunction]
-        public string GetTodaysDate()
-        {
-            Console.WriteLine($"(⌐■_■) {nameof(DatePlugin)} called");
+        Console.WriteLine($"(⌐■_■) {nameof(DatePlugin)} called");
 
-            return DateTime.Now.ToString("yyyy-MM-dd");
-        }
+        return DateTime.Now.ToString("yyyy-MM-dd");
     }
 }

@@ -1,16 +1,13 @@
-﻿namespace SKDemo.Examples._2_RefineDraft
+﻿public class MarkdownToHTMLPlugin
 {
-    public class MarkdownToHTMLPlugin
+    [KernelFunction, Description("Convert markdown to HTML")]
+    public static string Convert([Description("Markdown text to convert")] string markdown)
     {
-        [KernelFunction, Description("Convert markdown to HTML")]
-        public static string Convert([Description("Markdown text to convert")] string markdown)
-        {
-            Console.WriteLine($"(⌐■_■) {nameof(MarkdownToHTMLPlugin)} called");
+        Console.WriteLine($"(⌐■_■) {nameof(MarkdownToHTMLPlugin)} called");
 
-            var result = new Markdown().Transform(markdown);
+        var result = new Markdown().Transform(markdown);
 
-            Console.WriteLine(result);
-            return result;
-        }
+        Console.WriteLine(result);
+        return result;
     }
 }

@@ -9,4 +9,3 @@ global using Microsoft.SemanticKernel.Agents;
 global using Microsoft.SemanticKernel.Agents.Chat;
 global using Microsoft.SemanticKernel.ChatCompletion;
 global using Microsoft.SemanticKernel.Connectors.OpenAI;
-global using SKDemo.Examples._2_RefineDraft;

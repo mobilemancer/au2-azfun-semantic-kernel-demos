@@ -27,6 +27,7 @@
 
                 builder.Plugins.AddFromType<JobAddCopywriterPlugin>();
                 builder.Plugins.AddFromType<MarkdownToHTMLPlugin>();
+                builder.Plugins.AddFromType<DatePlugin>();
 
                 _kernel = builder.Build();
 
