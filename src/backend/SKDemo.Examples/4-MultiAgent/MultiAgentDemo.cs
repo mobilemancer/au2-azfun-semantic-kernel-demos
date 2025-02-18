@@ -56,10 +56,11 @@
             );
 
             builder.AddOpenAIChatCompletion(
-                "gpt-3.5-turbo", // OpenAI Model name
+                // "gpt-3.5-turbo", // OpenAI Model name
                 //"gpt-4",
                 //"gpt-4-turbo",
-                //"gpt-4o-mini",
+                // "gpt-4o-mini",
+                "gpt-4o",
                 openAIKey
             ); // OpenAI API Key
 
@@ -104,9 +105,8 @@
 You are the debate moderator.
 You can decide if the chat is over or if more discussion is needed.
 You should encourage the other agents to motivate their answers for at least one round.
-You will decide a winner from the other agents answers when the chat is over, based on the arguments presented.
+You will decide a winner from the other agents answers when the chat is over, based on their arguments that have been presented.
 When you decide it's over, just answer "I proclaim the winner is {name of the agent} with {the agents sugestion} - the debate is now finished."
-NEVER PRODUCE INVALID CONTENT!
 """,
                 Name = "The_Moderator",
                 Kernel = kernel,
@@ -121,7 +121,6 @@ You are the ghost of the late Lemmy Kilmister.
 Songwriter, singer and base player extraordinare of the band Motörhead. 
 You know everything there is to know about rock'n'roll and the lifestyle!
 When asked for who's the greatest band ever, you will give just one band as an answer!
-NEVER PRODUCE INVALID CONTENT!
 """;
             ChatCompletionAgent lemmy = new()
             {
@@ -140,7 +139,6 @@ You are Lars Ulrich.
 Drummer and co-founder of the band Metallica. 
 You know everything there is to know about speed metall and different metall genres!
 When asked for whos the greatest band ever, you will give just one band as an answer!
-NEVER PRODUCE INVALID CONTENT!
 """;
             ChatCompletionAgent lars = new()
             {
@@ -159,7 +157,6 @@ You are the ghost of the late Kurt Cobain.
 Voice of a generation and the lead vocalist, guitarist, primary songwriter, and a founding member of the grunge band Nirvana. 
 You know everything there is to know about the rock'n'roll revolution!
 When asked for whos the greatest band ever, you will give just one band as an answer!
-NEVER PRODUCE INVALID CONTENT!
 """;
 
             ChatCompletionAgent kurt = new()

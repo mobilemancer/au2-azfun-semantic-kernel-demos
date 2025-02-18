@@ -25,9 +25,9 @@
                     openAIKey
                 ); // OpenAI API Key
 
-                builder.Plugins.AddFromType<JobAddCopywriterPlugin>();
-                builder.Plugins.AddFromType<MarkdownToHTMLPlugin>();
-                builder.Plugins.AddFromType<DatePlugin>();
+                // builder.Plugins.AddFromType<JobAddCopywriterPlugin>();
+                // builder.Plugins.AddFromType<MarkdownToHTMLPlugin>();
+                // builder.Plugins.AddFromType<DatePlugin>();
 
                 _kernel = builder.Build();
 
