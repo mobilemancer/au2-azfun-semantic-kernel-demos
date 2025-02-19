@@ -17,3 +17,9 @@ npm start
 Open the solution file in the backend folder with Visual Studio or VS Code.
 
 Set the API as the startup project and then run.
+
+
+## LLM keys
+
+Get an OpenAI API key and set it in "openAIKey", 
+or get access to a project in Azure AI Foundry and set the API Key in"azureFoundryKey". See SimplePrompt.cs for what's needed.
